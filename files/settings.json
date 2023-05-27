@@ -1,0 +1,8 @@
+{
+    "hash":"./files/hash.txt",
+    "bins":"./files/bins.txt",
+    "lastNumbers":"./files/lastNumbers.txt",
+    "cardNumber":"./files/cardNumber.txt",
+    "coresTime":"./files/coresTime.csv",
+    "pyplotBar":"./files/pyplotBar.jpg"
+}
