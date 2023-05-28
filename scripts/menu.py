@@ -24,13 +24,13 @@ def menu() -> None:
     group.add_argument("-la", "--luhnalg",
                        help="Запускает алгоритм Луна")
     args = parser.parse_args()
-    if args.cardnumber is not None:
+    if args.cardnumber:
         card_info = CardInfo(args.path)
         number = create_card_number(
             card_info.hash_card, card_info.last_num, card_info.bins_card, 8)
         print(f"card number is {number}")
         card_info.card_number_serealization(number)
-    elif args.corestime is not None:
+    elif args.corestime:
         card_info = CardInfo(args.path)
         stat = Stat(args.path)
         for i in range(1, 9):
