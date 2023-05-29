@@ -15,9 +15,10 @@ class CardInfo:
             json_file (str): file name of json settings file
         """
         self.__card_info = self.settings_deserialization(json_file)
-        self.__last_numbers = self.__card_info["last_numbers"]
+        self.__last_numbers = self.__card_info["lastNumbers"]
         self.__hash = self.__card_info["hash"]
         self.__bins = self.__card_info["bins"]
+
 
     def settings_deserialization(self, json_file)->dict:
         """
@@ -32,38 +33,11 @@ class CardInfo:
         try:
             with open(json_file, "r") as file:
                 settings = json.load(file)
+            logging.info("Card's info is saved")
+            return settings
         except OSError as error:
             logging.warning("Settings are not loaded")
             sys.exit(error)
-        self.__path_to_card_number = settings["cardNumber"]
-        card_info = {}
-        try:
-            path = settings["hash"]
-            with open(path, "r") as file:
-                card_info["hash"] = file.read()
-        except OSError as error:
-            logging.warning("Hash is not loaded")
-            sys.exit(error)
-
-        try:
-            path = settings["bins"]
-            with open(path, "r") as file:
-                card_info["bins"] = tuple(map(int, file.readlines()))
-        except OSError as error:
-            logging.warning("Bins are not loaded")
-            sys.exit(error)
-        
-        try:
-            path = settings["lastNumbers"]
-            with open(path, "r") as file:
-                card_info["last_numbers"] = file.read()
-        except OSError as error:
-            logging.warning("Last numbers are not loaded")
-            sys.exit(error)
-        logging.info("Card's info is saved")
-        return card_info
-
-    
 
     @property
     def last_num(self)->str:
@@ -95,34 +69,36 @@ class CardInfo:
         """
         return self.__bins
     
-
-    def card_number_serealization(self, card_number:str)->None:
+    def card_number_serealization(self, card_number:str, json_file:str)->None:
         """
         func that saves card number to file
         Args:
-            file_name (str): card number file name
+            json_file (str): settings file name
             card_number (str): card number
 
         """
         try:
-            with open(self.__path_to_card_number, "w") as file:
-                file.write(card_number)
+            self.__card_info["cardNumber"] = card_number
+            with open(json_file, "w") as file:
+                json.dump(self.__card_info, file)
             logging.info("Card number is written")
         except OSError as error:
             logging.warning("Card number is not written")
             sys.exit(error)
 
-    def card_number_deserealization(self)->str:
+    def card_number_deserealization(self, json_file:str)->str:
         """
         func that loads card number from file
+        Args:
+            json_file (str): settings file name
         Returns:
             str: card's number
         """
         try:
-            with open(self.__path_to_card_number, "r") as file:
-                number = file.read()
+            with open(json_file, "r") as file:
+                number = json.load(file)
             logging.info("Card number is loaded")
-            return number
+            return number["cardNumber"]
         except OSError as error:
             logging.warning("Card number is not loaded")
             sys.exit(error)

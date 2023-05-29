@@ -29,7 +29,7 @@ def menu() -> None:
         number = create_card_number(
             card_info.hash_card, card_info.last_num, card_info.bins_card, 8)
         print(f"card number is {number}")
-        card_info.card_number_serealization(number)
+        card_info.card_number_serealization(number, args.path)
     elif args.corestime:
         card_info = CardInfo(args.path)
         stat = Stat(args.path)
@@ -42,6 +42,5 @@ def menu() -> None:
         stat.save_fig()
     elif args.luhnalg:
         card_info = CardInfo(args.path)
-        number = card_info.card_number_deserealization()
-        print(number)
+        number = card_info.card_number_deserealization(args.path)
         print(luhn_algorithm(number))

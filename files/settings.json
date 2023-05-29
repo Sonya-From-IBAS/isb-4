@@ -1,8 +1,1 @@
-{
-    "hash":"./files/hash.txt",
-    "bins":"./files/bins.txt",
-    "lastNumbers":"./files/lastNumbers.txt",
-    "cardNumber":"./files/cardNumber.txt",
-    "coresTime":"./files/coresTime.csv",
-    "pyplotBar":"./files/pyplotBar.jpg"
-}
+{"hash": "4f9cbbc1e5a60f526a58cde1343acd900b3f918f6fdff73eb82b0b87ae7d8e22", "bins": ["418831", "448331", "448346", "448369", "485990", "429158", "431336", "465208", "465274", "425154"], "lastNumbers": "5574", "cardNumber": "4859900364525574", "coresTime": "./files/coresTime.csv", "pyplotBar": "./files/pyplotBar.jpg"}
